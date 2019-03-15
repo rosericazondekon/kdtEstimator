@@ -24,7 +24,7 @@ server <- function(input, output, session) {
       read_xlsx(infile$datapath,sheet=1)
     }
   })
-  
+
   # #The following set of functions populate the column selectors
   output$kdtUI <- renderUI({
     df <-filedata()
@@ -33,40 +33,40 @@ server <- function(input, output, session) {
       selectInput("kdt", "Select a variable for 'KDT':",items, selected="KDT")
     }
   })
-  
-  
+
+
   output$dead <- renderUI({
     df <-filedata()
     if (is.null(df)) return(NULL)
-    
+
     items=names(df)
     names(items)=items
     selectInput("dead", "Select a variable for 'dead':",items, selected="dead")
-    
+
   })
-  
+
   output$total <- renderUI({
     df <-filedata()
     if (is.null(df)) return(NULL)
-    
+
     items=names(df)
     names(items)=items
     selectInput("total", "Select a variable for 'total':",items, selected="total")
-    
+
   })
-  
+
   output$computeKDT <- renderUI({
     df <-filedata()
     if (is.null(df)) return(NULL)
-    
-    
+
+
     actionButton("computeKDT","Estimate KDT!")
   })
-  
+
   output$filetable <- renderTable({
     filedata()
   })
-  
+
   resModel <- eventReactive(input$computeKDT, {
     df <-filedata()
     func<-input$func
@@ -74,10 +74,10 @@ server <- function(input, output, session) {
     DEAD <- as.vector(df[[input$dead]])
     TOTAL <- as.vector(df[[input$total]])
     ALIVE <- TOTAL - DEAD
-    
+
     data <- data.frame(KDT=KDT, Alive=ALIVE, Dead=DEAD, Total=TOTAL)
     data$prop = with(data, Dead/Total)
-    
+
     model<-glm(formula = data$prop~data$KDT,family = binomial(link = func),weights = data$Total)
     out <- dose.p(model,p=c(0.5,0.9,0.95))
     ret<-list()
@@ -87,7 +87,7 @@ server <- function(input, output, session) {
     ret[['model']]<-model
     ret
   })
-  
+
   output$kd50 <- renderValueBox({
     ret<-resModel()
     out<-ret$out
@@ -123,11 +123,11 @@ server <- function(input, output, session) {
       ret<-resModel()
       data<-ret$data
       func<-ret$func
-      ggplot(data, aes(KDT, prop)) + 
+      ggplot(data, aes(KDT, prop)) +
         geom_smooth(method = "glm", method.args = list(family = binomial(link = func) ),
                     aes(weight = Total, colour = "KDT Model"), se = T) + geom_point() +
         labs(title="Knock-Down Time Estimation",subtitle=paste("Link function:",func),
-             x = "Knock-Down Time (KDT)", 
+             x = "Knock-Down Time (KDT)",
              y = "Proportion of Dead")
     })
   })
