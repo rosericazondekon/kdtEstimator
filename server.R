@@ -9,8 +9,9 @@ library(htmlwidgets)
 library(MASS)
 library(drc)
 library(ggplot2)
+library(readxl)
 library(openxlsx)
- 
+
 
   #This function is repsonsible for loading in the selected file
   filedata <- reactive({
