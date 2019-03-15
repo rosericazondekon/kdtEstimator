@@ -10,7 +10,7 @@ library(htmlwidgets)
 #Dashboard Menu
 dashboard <- dashboardHeader(title = "KDT Estimator")
 
-loadData <- fileInput('datafile', 'Load a dataset (.xls, .txt or .csv)',
+loadData <- fileInput('datafile', 'Load a dataset (.xlsx, .xls, .txt or .csv)',
                       accept=c('text/csv/xls', 'text/comma-separated-values,text/plain'))
 
 
