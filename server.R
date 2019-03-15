@@ -1,17 +1,12 @@
 #-------------------------------------------------------------------------
 #  Roseric Azondekon,
 #  April 21st, 2018
+#  Last update: March 15, 2019
 #  Milwaukee, WI, USA
 #-------------------------------------------------------------------------
-library(shiny)
-library(shinydashboard)
-library(htmlwidgets)
-library(MASS)
-library(drc)
-library(ggplot2)
-library(readxl)
 
 
+server <- function(input, output, session) {
   #This function is repsonsible for loading in the selected file
   filedata <- reactive({
     infile <- input$datafile
@@ -27,30 +22,27 @@ library(readxl)
       read_excel(infile$datapath)
     } else if(endsWith(infile$name, ".xlsx")){
       read_xlsx(infile$datapath,sheet=1)
-      }
-  })
-
-
-  # #The following set of functions populate the column selectors
-  output$kdt <- renderUI({
-    df <-filedata()
-    if (is.null(df)) return(NULL)
-
-    items=names(df)
-    names(items)=items
-    selectInput("kdt", "Select a variable for 'KDT':",items, selected="KDT")
-
+    }
   })
   
-
+  # #The following set of functions populate the column selectors
+  output$kdtUI <- renderUI({
+    df <-filedata()
+    if (!is.null(df)){
+      items <- names(df)
+      selectInput("kdt", "Select a variable for 'KDT':",items, selected="KDT")
+    }
+  })
+  
+  
   output$dead <- renderUI({
     df <-filedata()
     if (is.null(df)) return(NULL)
-
+    
     items=names(df)
     names(items)=items
     selectInput("dead", "Select a variable for 'dead':",items, selected="dead")
-
+    
   })
   
   output$total <- renderUI({
@@ -67,10 +59,10 @@ library(readxl)
     df <-filedata()
     if (is.null(df)) return(NULL)
     
-
+    
     actionButton("computeKDT","Estimate KDT!")
   })
-
+  
   output$filetable <- renderTable({
     filedata()
   })
@@ -139,4 +131,4 @@ library(readxl)
              y = "Proportion of Dead")
     })
   })
-})
+}

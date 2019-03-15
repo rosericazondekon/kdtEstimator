@@ -1,16 +1,15 @@
 #-------------------------------------------------------------------------
 #  Roseric Azondekon,
 #  April 21st, 2018
+#  Last update: March 15, 2019
 #  Milwaukee, WI, USA
 #-------------------------------------------------------------------------
-library(shiny)
-library(shinydashboard)
-library(htmlwidgets)
+
 
 #Dashboard Menu
 dashboard <- dashboardHeader(title = "KDT Estimator")
 
-loadData <- fileInput('datafile', 'Load a dataset (.xls, .txt or .csv)',
+loadData <- fileInput('datafile', 'Load a dataset (.xlsx, .xls, .txt or .csv)',
                       accept=c('text/csv/xls', 'text/comma-separated-values,text/plain'))
 
 
@@ -21,7 +20,7 @@ linkFunction <- selectInput("func",
                          # ,selected = "probit"
 )
 
-kdtUI <- uiOutput("kdt")
+kdtUI <- uiOutput("kdtUI")
 deadUI <- uiOutput("dead")
 totalUI <- uiOutput("total")
 compute <- uiOutput("computeKDT")
