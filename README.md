@@ -8,7 +8,7 @@ Here is a small Shiny application designed specifically for the estimation of Kn
 Data Format
 -----------
 
-This application accepts the dataset either in a .txt, a .csv or **Excel formats (.xls only)**. The first column of the dataset is expected to contain the KDTs and be labeled "KDT". The second column is expected to contain the number of mosquitoes "knocked down" by the insecticide of interest and be labeled "dead", and the third column of the dataset is expected to contain the total number of mosquitoes exposed and be labeled "total". You may have different labels for the expected variables. In case you do, the application will invite you to explicitely specify the variables. I recommend that you use the display below as your template dataset.
+This application accepts the dataset either in a .txt, a .csv or **Excel formats (.xls or .xlsx)**. The first column of the dataset is expected to contain the KDTs and be labeled "KDT". The second column is expected to contain the number of mosquitoes "knocked down" by the insecticide of interest and be labeled "dead", and the third column of the dataset is expected to contain the total number of mosquitoes exposed and be labeled "total". You may have different labels for the expected variables. In case you do, the application will invite you to explicitely specify the variables. I recommend that you use the display below as your template dataset.
 
 | KDT | dead | total |
 |:----|:-----|:------|
