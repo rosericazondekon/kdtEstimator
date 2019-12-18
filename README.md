@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/rosericazondekon/kdtEstimator.svg?branch=master)](https://travis-ci.com/rosericazondekon/kdtEstimator)
+
 KDT Estimator
 ================
 Roseric AZONDEKON
