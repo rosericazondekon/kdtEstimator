@@ -4,8 +4,8 @@ Title: A small Shiny application designed specifically for the estimation of Kno
 Version: 0.1.0
 Authors@R: person("Roseric", "Azondekon", email = "roseric_2000@yahoo.fr",
                   role = c("aut", "cre"))
-Description: 
-License: 
+Description: kdtEstimator estimates Knock-Down Time based on aggregated WHO or CDC bottle Bioassay data.
+License: CC-BY
 Encoding: UTF-8
 LazyData: true
 Imports:
