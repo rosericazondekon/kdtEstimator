@@ -1,0 +1,23 @@
+Package: kdtEstimator
+Type: ShinyApp
+Title: A small Shiny application designed specifically for the estimation of Knock-Down Time based on aggregated WHO or CDC bottle Bioassay data.
+Version: 0.1.0
+Authors@R: person("Roseric", "Azondekon", email = "roseric_2000@yahoo.fr",
+                  role = c("aut", "cre"))
+Description: 
+License: 
+Encoding: UTF-8
+LazyData: true
+Imports:
+    shiny,
+    shinydashboard,
+    htmlwidgets,
+    MASS,
+    drc,
+    ggplot2,
+    readxl,
+    openxlsx
+RoxygenNote: 6.1.1
+Suggests: 
+    knitr,
+    rmarkdown
